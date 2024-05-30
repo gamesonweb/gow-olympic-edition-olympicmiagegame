@@ -6,117 +6,328 @@ window.addEventListener('DOMContentLoaded', function(){
     // ------------------------------ DÉBUT DU CODE DU JEU ------------------------------
     // ------------------------------ DÉBUT DU CODE DU JEU ------------------------------
 
-    var createScene = function () {
-        var scene = new BABYLON.Scene(engine);
+    let arrows = [];
+    let scoreJoueur1 = 0;
+    let scoreJoueur2 = 0;
+    let textBlockScore;
+    let tailleCible = 5;
+    let VitesseTir = 100; // frames pour l'animation
+    let VitesseCible = 200; // frames pour l'animation
     
+    const createScene = function () {
+        const scene = new BABYLON.Scene(engine);
+
         // Initialisation de la caméra
-        var camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 0, 0), scene);
+        const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 0, 0), scene);
         camera.attachControl(canvas, true);
-    
+
         // Ajout de la lumière hémisphérique
-        var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-        light.intensity = 0.4; // Intensité de la lumière
-    
-    
+        const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+        light.intensity = 0.4;
+        // Ajout de lumière ambiante
+        const ambientLight = new BABYLON.HemisphericLight("ambientLight", new BABYLON.Vector3(0, 1, 0), scene);
+        ambientLight.intensity = 0.7;
+
         // Ajout d'un sol
-        var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 1000, height: 1000}, scene);
-        var groundMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
-        var textureUrl = "https://2.bp.blogspot.com/-SBfckA3bX_k/U7UFkyH4AII/AAAAAAAAFcI/jNg05ZHvSCE/s1600/(GRASS+3)+seamless+turf+lawn+green+ground+field+texture.jpg"
+        const ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 1000, height: 1000}, scene);
+        const groundMaterial = new BABYLON.StandardMaterial("groundMaterial", scene);
+        const textureUrl = "https://2.bp.blogspot.com/-SBfckA3bX_k/U7UFkyH4AII/AAAAAAAAFcI/jNg05ZHvSCE/s1600/(GRASS+3)+seamless+turf+lawn+green+ground+field+texture.jpg";
         groundMaterial.diffuseTexture = new BABYLON.Texture(textureUrl, scene);
         ground.material = groundMaterial;
-        ground.position.y = -50; // Baisser le sol 
-    
+        ground.position.y = -30; // Baisser le sol 
+
         // Ajout d'une skybox pour le ciel
-        var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {size:1000.0}, scene);
-        var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+        const skybox = BABYLON.MeshBuilder.CreateBox("skybox", {size: 1000}, scene);
+        const skyboxMaterial = new BABYLON.StandardMaterial("skyboxMaterial", scene);
         skyboxMaterial.backFaceCulling = false;
-        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/skybox", scene);
+        skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("https://www.babylonjs-playground.com/textures/TropicalSunnyDay", scene);
         skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
         skybox.material = skyboxMaterial;
-    
-        // Ajout de lumière ambiante
-        var ambientLight = new BABYLON.HemisphericLight("ambientLight", new BABYLON.Vector3(0, 1, 0), scene);
-        ambientLight.intensity = 0.7;
-    
-        var targetDistance = 70; // La distance du mur invisible (et des cibles de Tic-Tac-Toe)
-        
-        // Création du mur invisible à la distance de la grille Tic-Tac-Toe
-        var invisibleWall = BABYLON.MeshBuilder.CreatePlane("invisibleWall", {width: 100, height: 100}, scene);
+
+        // Ajout d'un mur invisible pour les cibles de Tic-Tac-Toe
+        const targetDistance = 190; // La distance du mur invisible (et des cibles de Tic-Tac-Toe)
+        const invisibleWall = BABYLON.MeshBuilder.CreatePlane("invisibleWall", {width: 190, height: 50}, scene);
         invisibleWall.position.z = targetDistance;
-        invisibleWall.visibility = 0; // Le mur est invisible
-    
+        invisibleWall.position.y = 17; // Fait monter le mur
+        invisibleWall.visibility = 0; // 0 pour Rendre le mur invisible et 1 pour le rendre visible
+        
+        // Importer le modèle 3D du Burger
+        //BABYLON.SceneLoader.ImportMesh("", "./models/", "Garage.obj", scene, function (newMeshes) {
+        BABYLON.SceneLoader.ImportMesh("", "./models/burgerpiz/", "scene.gltf", scene, function (newMeshes) {
+            const model = newMeshes[0];
+            model.scaling = new BABYLON.Vector3(1, 1, 1); // échelle du modèle
+            model.position = new BABYLON.Vector3(-31, -8, 60); // position du modèle
+            model.rotation = new BABYLON.Vector3(0, Math.PI, 0); // rotation du modèle
+        });
+
+        // Importer le modèle 3D du Batiment
+        BABYLON.SceneLoader.ImportMesh("", "./models/", "Bat.glb", scene, function (newMeshes) {
+            const model = newMeshes[0];
+            model.scaling = new BABYLON.Vector3(1, 1, 1); // échelle du modèle
+            model.position = new BABYLON.Vector3(0, -10, 200); // position du modèle
+            model.rotation = new BABYLON.Vector3(0, Math.PI, 0); // rotation du modèle
+        });
+
+        // Importer le modèle 3D de l'archer
+        BABYLON.SceneLoader.ImportMesh("", "./models/bowman/", "scene.gltf", scene, function (newMeshes) {
+            const model = newMeshes[0];
+            model.scaling = new BABYLON.Vector3(1.2, 1.2, 1.2); // échelle du modèle
+            model.position = new BABYLON.Vector3(0.2, -1.8, 0); // position du modèle
+            model.rotation = new BABYLON.Vector3(0, -Math.PI/2, 0); // rotation du modèle
+            //couleur du modèle en rouge et bleu pour les joueurs
+
+        });
+
+        // Importer le modèle 3D de la tour
+        BABYLON.SceneLoader.ImportMesh("", "./models/wood_tower_low-poly/", "scene.gltf", scene, function (newMeshes) {
+            const model = newMeshes[0];
+            model.scaling = new BABYLON.Vector3(0.61, 0.61, 0.61); // échelle du modèle
+            model.position = new BABYLON.Vector3(2, -8.3, 1.65); // position du modèle
+            model.rotation = new BABYLON.Vector3(0, Math.PI, 0); // rotation du modèle
+        });
+
+        // Importer le modèle 3D de la voiture
+        BABYLON.SceneLoader.ImportMesh("", "./models/mersedes-benz_g63_amg/", "scene.gltf", scene, function (newMeshes) {
+            const model = newMeshes[0];
+            model.scaling = new BABYLON.Vector3(1.8, 1.8, 1.8); // échelle
+            model.position = new BABYLON.Vector3(15.15, -8.17, 20); // position 
+            model.rotation = new BABYLON.Vector3(0, Math.PI, 0); // rotation 
+        });
+
+
         // Création de la grille Tic-Tac-Toe
-        var grid = createTicTacToeGrid(scene, targetDistance, 2); // Taille des carrés ajustée à 2
-    
+        const grid = createTicTacToeGrid(scene, targetDistance, tailleCible);
+
         // Initialisation de l'arc
-        var bow = BABYLON.MeshBuilder.CreateBox("bow", {height: 0.5, width: 1, depth: 0.1}, scene);
+        const bow = BABYLON.MeshBuilder.CreateBox("bow", {height: 0.2, width: 0.2, depth: 0.1}, scene);
         bow.position.z = 1;
-    
-        var bowMaterial = new BABYLON.StandardMaterial("bowMaterial", scene);
+        const bowMaterial = new BABYLON.StandardMaterial("bowMaterial", scene);
         bowMaterial.diffuseColor = new BABYLON.Color3(0, 1, 0);
         bow.material = bowMaterial;
-    
+        bow.visibility = 0; // 0 pour Rendre le mur invisible et 1 pour le rendre visible
+
+        // Gestion des tours des joueurs
+        let currentPlayer = 1; // 1 pour le joueur 1 (bleu), 2 pour le joueur 2 (rouge)
+
+        // Créer une texture dynamique
+        const dynamicTexture = new BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+
+        // Mettre un fond de couleur pour le score
+        const rect2 = new BABYLON.GUI.Rectangle();
+        rect2.width = 0.16;
+        rect2.height = "40px";
+        rect2.cornerRadius = 20;
+        rect2.color = "red";
+        rect2.thickness = 1.5;
+        rect2.background = "white";
+        rect2.top = "272px";
+        rect2.left = "600px";
+        dynamicTexture.addControl(rect2); // Ajouter le rectangle à la texture dynamique
+
+        // Mettre un fond de couleur pour le score
+        const rect3 = new BABYLON.GUI.Rectangle();
+        rect3.width = 0.16;
+        rect3.height = "40px";
+        rect3.cornerRadius = 20;
+        rect3.color = "blue";
+        rect3.thickness = 1.5;
+        rect3.background = "white";
+        rect3.top = "329px";
+        rect3.left = "600px";
+        dynamicTexture.addControl(rect3); // Ajouter le rectangle à la texture dynamique
+
+        // Ajouter un texte pour le score
+        textBlockScore = new BABYLON.GUI.TextBlock();
+        textBlockScore.text = "Score Joueur 1 : " + scoreJoueur1 + "\n\nScore Joueur 2 : " + scoreJoueur2;
+        textBlockScore.color = "black";
+        textBlockScore.fontSize = 24;
+        textBlockScore.fontWeight = "bold";
+        textBlockScore.top = "300px";
+        textBlockScore.left = "600px";
+        dynamicTexture.addControl(textBlockScore); // Ajouter le bloc de texte à la texture dynamique
+
+        // Mettre une fond de couleur pour le bloc de texte
+        const rect = new BABYLON.GUI.Rectangle();
+        rect.width = 0.1;
+        rect.height = "40px";
+        rect.cornerRadius = 20;
+        rect.color = "black";
+        rect.thickness = 1.5;
+        rect.background = "white";
+        rect.top = "301px";
+        rect.left = "0px";
+        dynamicTexture.addControl(rect); // Ajouter le rectangle à la texture dynamique
+
+        // Créer un bloc de texte
+        const textBlock = new BABYLON.GUI.TextBlock();
+        textBlock.text = "Joueur " + currentPlayer;
+        textBlock.color = currentPlayer == 1 ? "red" : "blue";
+        textBlock.fontSize = 24;
+        textBlock.fontWeight = "bold";
+        textBlock.top = "300px";
+        textBlock.left = "0px";
+        dynamicTexture.addControl(textBlock); // Ajouter le bloc de texte à la texture dynamique
+
+
         scene.onPointerDown = function () {
-            // Tir de la flèche en utilisant le mur invisible pour déterminer la trajectoire
-            var pickResult = scene.pick(scene.pointerX, scene.pointerY, function(mesh) { return mesh === invisibleWall; });
+            const pickResult = scene.pick(scene.pointerX, scene.pointerY, function(mesh) { return mesh === invisibleWall; });
             if (pickResult.hit) {
-                var arrow = shootArrow(scene, bow, bowMaterial, pickResult.pickedPoint, grid);
+                shootArrow(scene, bow, bowMaterial, pickResult.pickedPoint, grid, currentPlayer);
+                
+                // Mettre à jour la couleur de l'arc pour le prochain joueur
+                currentPlayer = currentPlayer == 1 ? 2 : 1;
+                updateBowColor(currentPlayer, bowMaterial); // Mise à jour de la couleur de l'arc
+        
+                // Mettre à jour le texte et la couleur du bloc de texte
+                setTimeout(function() {
+                    textBlock.text = "Joueur " + currentPlayer;
+                    updateTextColor(currentPlayer, textBlock); // Mise à jour de la couleur du texte
+                }, 500); // Attendre 0.5 seconde avant de changer de joueur
             }
         };
-    
+
+
+
         return scene;
     };
-    
+
+    // Crée une grille Tic-Tac-Toe avec des carrés
     function createTicTacToeGrid(scene, distance, size) {
-        var grid = [];
-        var spacing = size + size/8 ; // Espacement entre les carrés
+        const grid = [];
+        const spacing = size + size/8 ; // Espacement entre les carrés
         for (let i = -1; i <= 1; i++) {
             for (let j = -1; j <= 1; j++) {
-                var square = BABYLON.MeshBuilder.CreateBox("square" + (i + 1) * 3 + (j + 1), {size: size, height: 0.1}, scene);
+                const square = BABYLON.MeshBuilder.CreateBox("square" + (i + 1) * 3 + (j + 1), {size: size, height: 0.1}, scene);
                 square.position = new BABYLON.Vector3(j * spacing, i * spacing, distance);
                 square.rotation.x = Math.PI / 2; // Ajustement pour face à la caméra
-                var material = new BABYLON.StandardMaterial("squareMat" + (i + 1) * 3 + (j + 1), scene);
+                const material = new BABYLON.StandardMaterial("squareMat" + (i + 1) * 3 + (j + 1), scene);
                 material.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
                 square.material = material;
                 grid.push(square);
+
+                // Créez une animation pour la position de la cible
+                const animTarget = new BABYLON.Animation("animTarget", "position", 15, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+
+                // Définissez les clés de l'animation pour déplacer la cible d'un point à un autre
+                const keysTarget = [
+                    { frame: 0, value: square.position.add(new BABYLON.Vector3(80, 15, 0)) }, // Position de départ
+                    { frame: VitesseCible/2 , value: square.position.add(new BABYLON.Vector3(-80, 15, 0)) }, // Position d'arrivée
+                    { frame: VitesseCible, value: square.position.add(new BABYLON.Vector3(80, 15, 0)) } // Retour à la position de départ
+                ];
+
+                animTarget.setKeys(keysTarget);
+
+                // Ajoutez l'animation à la cible
+                square.animations.push(animTarget);
+
+                // Commencez l'animation
+                scene.beginAnimation(square, 0, VitesseCible, true); // Le dernier argument à true signifie que l'animation se répète indéfiniment
             }
         }
         return grid;
     }
-    
-    function shootArrow(scene, bow, material, targetPoint, grid) {
-        var arrow = BABYLON.MeshBuilder.CreateBox("arrow", {height: 0.1, width: 0.5, depth: 0.1}, scene);
+
+    // Tire une flèche vers un point cible
+    function shootArrow(scene, bow, material, targetPoint, grid, currentPlayer) {
+        // Crée une sphère au lieu d'un cylindre
+        const arrow = BABYLON.MeshBuilder.CreateSphere("arrow", {diameter: 0.7}, scene);
         arrow.position = bow.position.clone();
         arrow.material = material;
         arrow.lookAt(targetPoint);
-    
-        // Marquer la flèche pour la détection de collision
-        arrow.isArrow = true;
-    
+        arrow.isDisposed = false;
+        
         // Animation de la flèche
-        var animArrow = new BABYLON.Animation("animArrow", "position", 60, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
-        var keysArrow = [{ frame: 0, value: arrow.position }, { frame: 100, value: targetPoint }];
+        const animArrow = new BABYLON.Animation("animArrow", "position", 60, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+        const keysArrow = [{ frame: 0, value: arrow.position }, { frame: VitesseTir, value: targetPoint }]; // 100 frames pour l'animation
         animArrow.setKeys(keysArrow);
         arrow.animations.push(animArrow);
-        scene.beginAnimation(arrow, 0, 100, false);
-    
-        // Vérification continue des collisions
-        arrow.checkCollisions = true; // Activer les collisions pour la flèche
-        scene.registerBeforeRender(() => {
-            if (arrow.isArrow) {
-                grid.forEach(square => {
-                    if (arrow.intersectsMesh(square, false)) {
-                        // Changement de couleur du carré en une couleur aléatoire
-                        square.material.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
-                        // Marquer la flèche pour éviter des détections répétées
-                        arrow.isArrow = false;
-                        arrow.dispose(); // Optionnel, supprimer la flèche après collision
-                    }
-                });
-            }
+        scene.beginAnimation(arrow, 0, VitesseTir, false, 1, function() {
+            setTimeout(function() {
+                arrow.dispose();
+                arrow.isDisposed = true; // Mettez à jour la propriété lorsque la flèche est supprimée
+            }, 50); // Supprimer la flèche après 0.05 seconde
         });
         
-    }    
+        arrow.isArrow = true;
+        scene.registerBeforeRender(() => {
+            if (arrow.isArrow && !arrow.isDisposed) {
+            grid.forEach(square => {
+                if (arrow.intersectsMesh(square, false)) {
+                const color = currentPlayer == 1 ? new BABYLON.Color3(1, 0, 0) : new BABYLON.Color3(0, 0, 1);
+                square.material.diffuseColor = color;
+                arrow.isArrow = false;
+                // Vérifier si le joueur a gagné
+                if (checkVictory(grid, color)) {
+                    const victoryMessage = "Player " + currentPlayer + " wins!";
+                    console.log(victoryMessage);
+                    alert(victoryMessage);
+                    // Optionnel : Réinitialiser le jeu ou proposer de recommencer
+                    resetGame(grid, scene, currentPlayer);
+                }
+                }
+            });
+            }
+        });
+
+        // Ajoutez la flèche au tableau des flèches
+        arrows.push(arrow);
+        
+    }
+
+    // Met à jour la couleur de l'arc en fonction du joueur actuel
+    function updateBowColor(currentPlayer, bowMaterial) {
+        const color = currentPlayer == 1 ? new BABYLON.Color3(0, 0, 1) : new BABYLON.Color3(1, 0, 0); // Bleu pour Joueur 1, Rouge pour Joueur 2
+        bowMaterial.diffuseColor = color;
+    }
+
+    function updateTextColor(currentPlayer, textBlock) {
+        const color = currentPlayer == 1 ? "red" : "blue"; // Bleu pour Joueur 1, Rouge pour Joueur 2
+        textBlock.color = color;
+    }
+
+    // Vérifie si un joueur a gagné en vérifiant les combinaisons gagnantes
+    function checkVictory(grid, color) {
+        // Définir les combinaisons gagnantes dans la grille Tic-Tac-Toe
+        const winningCombinations = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Lignes
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Colonnes
+            [0, 4, 8], [2, 4, 6]            // Diagonales
+        ];
+
+        for (let i = 0; i < winningCombinations.length; i++) {
+            const [a, b, c] = winningCombinations[i];
+            if (grid[a].material.diffuseColor.equals(color) &&
+                grid[b].material.diffuseColor.equals(color) &&
+                grid[c].material.diffuseColor.equals(color)) {
+                if (color.equals(new BABYLON.Color3(1, 0, 0))) {
+                    scoreJoueur1++;
+                } else {
+                    scoreJoueur2++;
+                }
+                // Mettre à jour l'affichage du score
+                textBlockScore.text = "Score Joueur 1 : " + scoreJoueur1 + "\n\nScore Joueur 2 : " + scoreJoueur2;
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    // Réinitialise le jeu
+    function resetGame(grid, scene, currentPlayer) {
+        // Remettre tous les carrés à une couleur neutre (blanc ici)
+        grid.forEach(square => {
+            square.material.diffuseColor = new BABYLON.Color3(1, 1, 10);
+        });
+
+        // Réinitialiser le joueur actuel à 1 ou à 2
+        currentPlayer = 1;
+
+        // Parcourez le tableau des flèches et supprimez chaque flèche
+        arrows.forEach(arrow => arrow.dispose());
+        // Réinitialisez le tableau des flèches
+        arrows = [];
+    }
     
         
 
