@@ -1,0 +1,8 @@
+Model Information:
+* title:	Bard the Bowman
+* source:	https://sketchfab.com/3d-models/bard-the-bowman-205a2477989f40d88264a75e7e416e0e
+* author:	KevBot (https://sketchfab.com/boyle.kj)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

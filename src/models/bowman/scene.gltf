@@ -1,0 +1,705 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 4967,
+      "max": [
+        0.8897680640220642,
+        0.4218178987503052,
+        1.7031688690185547
+      ],
+      "min": [
+        -0.4918399453163147,
+        -0.2163141518831253,
+        0.23986735939979553
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 59604,
+      "componentType": 5126,
+      "count": 4967,
+      "max": [
+        0.9995470643043518,
+        0.9999514818191528,
+        0.9994704127311707
+      ],
+      "min": [
+        -0.9987926483154297,
+        -0.9999584555625916,
+        -0.9999930262565613
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 4967,
+      "max": [
+        0.999652087688446,
+        0.9997341632843018,
+        0.9989731907844543,
+        1.0
+      ],
+      "min": [
+        -0.999972939491272,
+        -0.9996728897094727,
+        -0.9965189695358276,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 4967,
+      "max": [
+        0.9862493872642517,
+        0.9962430596351624
+      ],
+      "min": [
+        0.01607722043991089,
+        0.007728577591478825
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 39736,
+      "componentType": 5126,
+      "count": 4967,
+      "max": [
+        0.9862493872642517,
+        0.9962430596351624
+      ],
+      "min": [
+        0.01607722043991089,
+        0.007728577591478825
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 26814,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 119208,
+      "componentType": 5126,
+      "count": 2443,
+      "max": [
+        0.18932302296161652,
+        0.2961064577102661,
+        1.959502935409546
+      ],
+      "min": [
+        -0.1657450646162033,
+        -0.0972328633069992,
+        1.3756712675094604
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 148524,
+      "componentType": 5126,
+      "count": 2443,
+      "max": [
+        0.9999781250953674,
+        0.998098611831665,
+        0.9964990615844727
+      ],
+      "min": [
+        -0.9987905025482178,
+        -0.9996811151504517,
+        -0.9999148845672607
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 79472,
+      "componentType": 5126,
+      "count": 2443,
+      "max": [
+        0.9996627569198608,
+        0.9992266893386841,
+        0.9997321963310242,
+        1.0
+      ],
+      "min": [
+        -0.9988471865653992,
+        -0.9917925596237183,
+        -0.9999898672103882,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 79472,
+      "componentType": 5126,
+      "count": 2443,
+      "max": [
+        0.9761762619018555,
+        0.9848023653030396
+      ],
+      "min": [
+        0.02639293670654297,
+        0.03855136036872864
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 107256,
+      "componentType": 5125,
+      "count": 12420,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 177840,
+      "componentType": 5126,
+      "count": 1358,
+      "max": [
+        0.46744948625564575,
+        0.37426167726516724,
+        1.6276466846466064
+      ],
+      "min": [
+        -0.47902536392211914,
+        -0.29926618933677673,
+        -0.019143439829349518
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 194136,
+      "componentType": 5126,
+      "count": 1358,
+      "max": [
+        0.9995493292808533,
+        0.9981408715248108,
+        0.9983096718788147
+      ],
+      "min": [
+        -0.9996594786643982,
+        -0.9988983273506165,
+        -0.9973511099815369
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 118560,
+      "componentType": 5126,
+      "count": 1358,
+      "max": [
+        0.9995034337043762,
+        0.9992296695709229,
+        0.995453953742981,
+        1.0
+      ],
+      "min": [
+        -0.9965611696243286,
+        -0.9979549050331116,
+        -0.9996374249458313,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 99016,
+      "componentType": 5126,
+      "count": 1358,
+      "max": [
+        0.9850236773490906,
+        0.9826406836509705
+      ],
+      "min": [
+        0.0,
+        0.0
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 156936,
+      "componentType": 5125,
+      "count": 6675,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 210432,
+      "componentType": 5126,
+      "count": 2807,
+      "max": [
+        1.0991758108139038,
+        0.5237095355987549,
+        2.456761121749878
+      ],
+      "min": [
+        -0.4896736443042755,
+        -0.17789581418037415,
+        0.6356610059738159
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 244116,
+      "componentType": 5126,
+      "count": 2807,
+      "max": [
+        0.9974890351295471,
+        0.9900117516517639,
+        0.990972101688385
+      ],
+      "min": [
+        -0.9981396794319153,
+        -0.9939072728157043,
+        -0.9973961114883423
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 140288,
+      "componentType": 5126,
+      "count": 2807,
+      "max": [
+        0.999983549118042,
+        0.9992485642433167,
+        0.9998392462730408,
+        1.0
+      ],
+      "min": [
+        -0.9999163150787354,
+        -0.998981237411499,
+        -0.9997039437294006,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 109880,
+      "componentType": 5126,
+      "count": 2807,
+      "max": [
+        0.9729188084602356,
+        0.9906365871429443
+      ],
+      "min": [
+        0.02762727439403534,
+        0.028126083314418793
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 132336,
+      "componentType": 5126,
+      "count": 2807,
+      "max": [
+        0.9729188084602356,
+        0.9906365871429443
+      ],
+      "min": [
+        0.02762727439403534,
+        0.028126083314418793
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 154792,
+      "componentType": 5126,
+      "count": 2807,
+      "max": [
+        0.9729188084602356,
+        0.9906365871429443
+      ],
+      "min": [
+        0.02762727439403534,
+        0.028126083314418793
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 183636,
+      "componentType": 5125,
+      "count": 6240,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "KevBot (https://sketchfab.com/boyle.kj)",
+      "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+      "source": "https://sketchfab.com/3d-models/bard-the-bowman-205a2477989f40d88264a75e7e416e0e",
+      "title": "Bard the Bowman"
+    },
+    "generator": "Sketchfab-15.83.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 208596,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 177248,
+      "byteOffset": 208596,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 277800,
+      "byteOffset": 385844,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 185200,
+      "byteOffset": 663644,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 848844,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/Coat_Material_baseColor.png"
+    },
+    {
+      "uri": "textures/Coat_Material_normal.png"
+    },
+    {
+      "uri": "textures/BardHead_Material_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/BardHead_Material_normal.png"
+    },
+    {
+      "uri": "textures/BardLowerBody_Material_baseColor.png"
+    },
+    {
+      "uri": "textures/BardLowerBody_Material_normal.png"
+    },
+    {
+      "uri": "textures/BardWeapons_Material_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/BardWeapons_Material_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/BardWeapons_Material_normal.jpeg"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Coat_Material",
+      "normalTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.8752360115766125
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "BardHead_Material",
+      "normalTexture": {
+        "index": 3
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 2
+        },
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.5992368738647584
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "BardLowerBody_Material",
+      "normalTexture": {
+        "index": 5
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 4
+        },
+        "metallicFactor": 0.0
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "BardWeapons_Material",
+      "normalTexture": {
+        "index": 8
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 6
+        },
+        "metallicFactor": 0.364191586107691,
+        "metallicRoughnessTexture": {
+          "index": 7
+        },
+        "roughnessFactor": 0.8457168631371066
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Pose Geometry_Coat_Material_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3,
+            "TEXCOORD_1": 4
+          },
+          "indices": 5,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Pose Geometry_BardHead_Material_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 7,
+            "POSITION": 6,
+            "TANGENT": 8,
+            "TEXCOORD_0": 9
+          },
+          "indices": 10,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Pose Geometry_BardLowerBody_Material_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 12,
+            "POSITION": 11,
+            "TANGENT": 13,
+            "TEXCOORD_0": 14
+          },
+          "indices": 15,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Pose Geometry_BardWeapons_Material_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 17,
+            "POSITION": 16,
+            "TANGENT": 18,
+            "TEXCOORD_0": 19,
+            "TEXCOORD_1": 20,
+            "TEXCOORD_2": 21
+          },
+          "indices": 22,
+          "material": 3,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.0,
+        0.0,
+        -0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Bard_POSE.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.629206793918314e-05,
+        -99.99999999999868,
+        0.0,
+        0.0,
+        99.99999999999868,
+        -1.629206793918314e-05,
+        0.0,
+        0.0,
+        0.9071789979934692,
+        9.47998332977295,
+        1.0
+      ],
+      "name": "Pose Geometry"
+    },
+    {
+      "mesh": 0,
+      "name": "Pose Geometry_Coat_Material_0"
+    },
+    {
+      "mesh": 1,
+      "name": "Pose Geometry_BardHead_Material_0"
+    },
+    {
+      "mesh": 2,
+      "name": "Pose Geometry_BardLowerBody_Material_0"
+    },
+    {
+      "mesh": 3,
+      "name": "Pose Geometry_BardWeapons_Material_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    },
+    {
+      "sampler": 0,
+      "source": 4
+    },
+    {
+      "sampler": 0,
+      "source": 5
+    },
+    {
+      "sampler": 0,
+      "source": 6
+    },
+    {
+      "sampler": 0,
+      "source": 7
+    },
+    {
+      "sampler": 0,
+      "source": 8
+    }
+  ]
+}
