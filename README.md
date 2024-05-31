@@ -14,6 +14,6 @@ Le "Olympic-MIAGE-Game" est un jeu de tir à l'arc en 3D où les joueurs tirent 
 
 https://gamesonweb.github.io/gow-olympic-edition-olympicmiagegame/
 
-### Lien de la présnetation du jeu
+### Lien de la présentation du jeu
 
 https://youtu.be/zpjkIHMA1_g
