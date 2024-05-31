@@ -212,7 +212,7 @@ window.addEventListener('DOMContentLoaded', function(){
                 square.position = new BABYLON.Vector3(j * spacing, i * spacing, distance);
                 square.rotation.x = Math.PI / 2; // Ajustement pour face à la caméra
                 const material = new BABYLON.StandardMaterial("squareMat" + (i + 1) * 3 + (j + 1), scene);
-                material.diffuseColor = new BABYLON.Color3(10, 10, 10);
+                material.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
                 square.material = material;
                 grid.push(square);
 
