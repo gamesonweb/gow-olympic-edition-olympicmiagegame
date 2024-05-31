@@ -53,7 +53,7 @@ window.addEventListener('DOMContentLoaded', function(){
         
         // Importer le modèle 3D du Burger
         //BABYLON.SceneLoader.ImportMesh("", "./models/", "Garage.obj", scene, function (newMeshes) {
-        BABYLON.SceneLoader.ImportMesh("", "./models/burgerpiz/", "scene.gltf", scene, function (newMeshes) {
+        BABYLON.SceneLoader.ImportMesh("", "./src/models/burgerpiz/", "scene.gltf", scene, function (newMeshes) {
             const model = newMeshes[0];
             model.scaling = new BABYLON.Vector3(1, 1, 1); // échelle du modèle
             model.position = new BABYLON.Vector3(-31, -8, 60); // position du modèle
@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', function(){
         });
 
         // Importer le modèle 3D du Batiment
-        BABYLON.SceneLoader.ImportMesh("", "./models/", "Bat.glb", scene, function (newMeshes) {
+        BABYLON.SceneLoader.ImportMesh("", "./src/models/", "Bat.glb", scene, function (newMeshes) {
             const model = newMeshes[0];
             model.scaling = new BABYLON.Vector3(1, 1, 1); // échelle du modèle
             model.position = new BABYLON.Vector3(0, -10, 200); // position du modèle
@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded', function(){
         });
 
         // Importer le modèle 3D de l'archer
-        BABYLON.SceneLoader.ImportMesh("", "./models/bowman/", "scene.gltf", scene, function (newMeshes) {
+        BABYLON.SceneLoader.ImportMesh("", "./src/models/bowman/", "scene.gltf", scene, function (newMeshes) {
             const model = newMeshes[0];
             model.scaling = new BABYLON.Vector3(1.2, 1.2, 1.2); // échelle du modèle
             model.position = new BABYLON.Vector3(0.2, -1.8, 0); // position du modèle
@@ -79,7 +79,7 @@ window.addEventListener('DOMContentLoaded', function(){
         });
 
         // Importer le modèle 3D de la tour
-        BABYLON.SceneLoader.ImportMesh("", "./models/wood_tower_low-poly/", "scene.gltf", scene, function (newMeshes) {
+        BABYLON.SceneLoader.ImportMesh("", "./src/models/wood_tower_low-poly/", "scene.gltf", scene, function (newMeshes) {
             const model = newMeshes[0];
             model.scaling = new BABYLON.Vector3(0.61, 0.61, 0.61); // échelle du modèle
             model.position = new BABYLON.Vector3(2, -8.3, 1.65); // position du modèle
@@ -87,7 +87,7 @@ window.addEventListener('DOMContentLoaded', function(){
         });
 
         // Importer le modèle 3D de la voiture
-        BABYLON.SceneLoader.ImportMesh("", "./models/mersedes-benz_g63_amg/", "scene.gltf", scene, function (newMeshes) {
+        BABYLON.SceneLoader.ImportMesh("", "./src/models/mersedes-benz_g63_amg/", "scene.gltf", scene, function (newMeshes) {
             const model = newMeshes[0];
             model.scaling = new BABYLON.Vector3(1.8, 1.8, 1.8); // échelle
             model.position = new BABYLON.Vector3(15.15, -8.17, 20); // position 
