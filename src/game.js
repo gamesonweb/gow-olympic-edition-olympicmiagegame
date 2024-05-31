@@ -44,6 +44,16 @@ window.addEventListener('DOMContentLoaded', function(){
         skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
         skybox.material = skyboxMaterial;
 
+        // Ajout des bruitages
+        const shootSound = new BABYLON.Sound("shootSound", "./src/music/tir.mp3", scene);
+        const hitSound = new BABYLON.Sound("hitSound", "./src/music/explo.mp3", scene);
+        const music = new BABYLON.Sound("Music", "./src/music/musique.mp3", scene, null, {
+            loop: true,
+            autoplay: true,
+            volume: 0.2 // 20% du volume
+        });
+        music.play();
+
         // Ajout d'un mur invisible pour les cibles de Tic-Tac-Toe
         const targetDistance = 190; // La distance du mur invisible (et des cibles de Tic-Tac-Toe)
         const invisibleWall = BABYLON.MeshBuilder.CreatePlane("invisibleWall", {width: 190, height: 50}, scene);
@@ -173,6 +183,7 @@ window.addEventListener('DOMContentLoaded', function(){
             const pickResult = scene.pick(scene.pointerX, scene.pointerY, function(mesh) { return mesh === invisibleWall; });
             if (pickResult.hit) {
                 shootArrow(scene, bow, bowMaterial, pickResult.pickedPoint, grid, currentPlayer);
+                shootSound.play();
                 
                 // Mettre à jour la couleur de l'arc pour le prochain joueur
                 currentPlayer = currentPlayer == 1 ? 2 : 1;
@@ -201,7 +212,7 @@ window.addEventListener('DOMContentLoaded', function(){
                 square.position = new BABYLON.Vector3(j * spacing, i * spacing, distance);
                 square.rotation.x = Math.PI / 2; // Ajustement pour face à la caméra
                 const material = new BABYLON.StandardMaterial("squareMat" + (i + 1) * 3 + (j + 1), scene);
-                material.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
+                material.diffuseColor = new BABYLON.Color3(10, 10, 10);
                 square.material = material;
                 grid.push(square);
 
@@ -231,6 +242,9 @@ window.addEventListener('DOMContentLoaded', function(){
     function shootArrow(scene, bow, material, targetPoint, grid, currentPlayer) {
         // Crée une sphère au lieu d'un cylindre
         const arrow = BABYLON.MeshBuilder.CreateSphere("arrow", {diameter: 0.7}, scene);
+        // Sons
+        const deleteSound = new BABYLON.Sound("deleteSound", "./src/music/fleche.mp3", scene);
+        const hitSound = new BABYLON.Sound("hitSound", "./src/music/explo.mp3", scene);
         arrow.position = bow.position.clone();
         arrow.material = material;
         arrow.lookAt(targetPoint);
@@ -242,6 +256,8 @@ window.addEventListener('DOMContentLoaded', function(){
         animArrow.setKeys(keysArrow);
         arrow.animations.push(animArrow);
         scene.beginAnimation(arrow, 0, VitesseTir, false, 1, function() {
+            deleteSound.setVolume(0.1);
+            deleteSound.play();
             setTimeout(function() {
                 arrow.dispose();
                 arrow.isDisposed = true; // Mettez à jour la propriété lorsque la flèche est supprimée
@@ -251,8 +267,10 @@ window.addEventListener('DOMContentLoaded', function(){
         arrow.isArrow = true;
         scene.registerBeforeRender(() => {
             if (arrow.isArrow && !arrow.isDisposed) {
+            // Vérifiez si la flèche touche un carré de la grille
             grid.forEach(square => {
                 if (arrow.intersectsMesh(square, false)) {
+                hitSound.play();
                 const color = currentPlayer == 1 ? new BABYLON.Color3(1, 0, 0) : new BABYLON.Color3(0, 0, 1);
                 square.material.diffuseColor = color;
                 arrow.isArrow = false;
